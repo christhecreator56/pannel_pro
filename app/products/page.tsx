@@ -218,7 +218,7 @@ export default function ProductsPage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
         {/* Hero Section Skeleton */}
-        <section className="relative overflow-hidden bg-gradient-to-r from-black via-red-900 to-gray-900 pt-24 pb-20">
+        <section className="relative overflow-hidden bg-gradient-to-r from-black via-blue-900 to-gray-900 pt-24 pb-20">
           <div className="absolute inset-0 bg-black/40"></div>
           <div className="relative container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center space-y-6">
@@ -241,13 +241,13 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
       {pdfStatus && (
-        <div className="fixed top-4 right-4 z-50 bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg">
+        <div className="fixed top-4 right-4 z-50 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
           {pdfStatus}
         </div>
       )}
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-black via-red-900 to-gray-900 pt-24 pb-20">
+      <section className="relative overflow-hidden bg-gradient-to-r from-black via-blue-900 to-gray-900 pt-24 pb-20">
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative container mx-auto px-4">
           <motion.div
@@ -258,7 +258,7 @@ export default function ProductsPage() {
           >
             <motion.h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight" variants={itemVariants}>
               Our
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
                 Products
               </span>
             </motion.h1>
@@ -287,12 +287,12 @@ export default function ProductsPage() {
                   {/* Product Info */}
                   <div className={`space-y-6 lg:space-y-8 ${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
                     <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white shadow-lg flex-shrink-0">
                         {product.icon}
                       </div>
                       <div className="flex-1">
                         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">{product.title}</h2>
-                        <p className="text-red-400 font-medium text-lg mt-1">{product.subtitle}</p>
+                        <p className="text-blue-400 font-medium text-lg mt-1">{product.subtitle}</p>
                       </div>
                     </div>
 
@@ -303,7 +303,7 @@ export default function ProductsPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
                         {product.detailedFeatures.map((feature, featureIndex) => (
                           <div key={featureIndex} className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-red-400 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
                             <span className="text-gray-300 text-sm sm:text-base leading-relaxed">{feature}</span>
                           </div>
                         ))}
@@ -323,13 +323,13 @@ export default function ProductsPage() {
                     </div>
 
                     <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                      <Button className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-6 py-3 text-base font-medium">
+                      <Button className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-3 text-base font-medium">
                         Get Started
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                       <Button
                         variant="outline"
-                        className="w-full sm:w-auto border-red-400 text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-all duration-300 bg-transparent px-6 py-3 text-base font-medium"
+                        className="w-full sm:w-auto border-blue-400 text-blue-400 hover:bg-blue-500/20 hover:text-blue-300 transition-all duration-300 bg-transparent px-6 py-3 text-base font-medium"
                         onClick={() => handlePDFOpen(product.subtitle)}
                       >
                         Learn More
@@ -340,12 +340,12 @@ export default function ProductsPage() {
                   {/* Product Stats & Testimonial */}
                   <div className={`space-y-6 lg:space-y-8 ${index % 2 === 1 ? "lg:col-start-1" : ""}`}>
                     {/* Stats */}
-                    <SpotlightCard className="p-4 sm:p-6" spotlightColor="rgba(239, 68, 68, 0.1)">
+                    <SpotlightCard className="p-4 sm:p-6" spotlightColor="rgba(59, 130, 246, 0.1)">
                       <h3 className="text-lg sm:text-xl font-semibold text-white mb-4 text-center lg:text-left">Performance Stats</h3>
                       <div className="grid grid-cols-3 gap-4 sm:gap-6">
                         {product.stats.map((stat, statIndex) => (
                           <div key={statIndex} className="text-center">
-                            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-red-400">{stat.value}</div>
+                            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-400">{stat.value}</div>
                             <div className="text-xs sm:text-sm text-gray-300 leading-tight">{stat.label}</div>
                           </div>
                         ))}
@@ -353,7 +353,7 @@ export default function ProductsPage() {
                     </SpotlightCard>
 
                     {/* Testimonial */}
-                    <Card className="bg-gray-900 border-red-500/20">
+                    <Card className="bg-gray-900 border-blue-500/20">
                       <CardContent className="p-4 sm:p-6">
                         <div className="flex items-center space-x-1 mb-3">
                           {[...Array(product.testimonial.rating)].map((_, i) => (
@@ -362,7 +362,7 @@ export default function ProductsPage() {
                         </div>
                         <p className="text-gray-300 italic mb-4 text-sm sm:text-base leading-relaxed text-justify">"{product.testimonial.text}"</p>
                         <div className="flex items-center space-x-2">
-                          <Users className="h-4 w-4 text-red-400 flex-shrink-0" />
+                          <Users className="h-4 w-4 text-blue-400 flex-shrink-0" />
                           <span className="text-sm text-gray-400">{product.testimonial.author}</span>
                         </div>
                       </CardContent>
@@ -374,7 +374,7 @@ export default function ProductsPage() {
                         <Badge
                           key={featureIndex}
                           variant="outline"
-                          className="border-red-500/30 text-red-300 bg-red-500/10 text-xs sm:text-sm px-3 py-1"
+                          className="border-blue-500/30 text-blue-300 bg-blue-500/10 text-xs sm:text-sm px-3 py-1"
                         >
                           {feature}
                         </Badge>
@@ -419,22 +419,22 @@ export default function ProductsPage() {
                 variants={itemVariants}
                 style={{ willChange: "transform, opacity" }}
               >
-                <SpotlightCard className="h-full p-4 sm:p-6 text-center" spotlightColor="rgba(239, 68, 68, 0.1)">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center mx-auto mb-4 text-white">
+                <SpotlightCard className="h-full p-4 sm:p-6 text-center" spotlightColor="rgba(59, 130, 246, 0.1)">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 text-white">
                     {product.icon}
                   </div>
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 leading-tight">{product.title}</h3>
-                  <p className="text-red-400 font-medium mb-3 sm:mb-4">{product.subtitle}</p>
+                  <p className="text-blue-400 font-medium mb-3 sm:mb-4">{product.subtitle}</p>
                   <p className="text-gray-300 text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed text-justify">{product.description}</p>
                   <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                     {product.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center space-x-2 sm:space-x-3">
-                        <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-blue-400 flex-shrink-0" />
                         <span className="text-gray-300 text-xs sm:text-sm leading-relaxed">{feature}</span>
                       </div>
                     ))}
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-sm sm:text-base py-2 sm:py-3">
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-sm sm:text-base py-2 sm:py-3">
                     Choose Plan
                   </Button>
                 </SpotlightCard>
@@ -445,7 +445,7 @@ export default function ProductsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-20 bg-gradient-to-r from-red-900 to-black">
+      <section className="py-16 sm:py-20 bg-gradient-to-r from-blue-900 to-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={containerVariants}
@@ -460,13 +460,13 @@ export default function ProductsPage() {
               Join hundreds of automotive professionals already using PanelPro to streamline their operations
             </motion.p>
             <motion.div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center" variants={itemVariants}>
-              <Button className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-red-500/30">
+              <Button className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-500/30">
                 Start Free Trial
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
               <Button
                 variant="outline"
-                className="w-full sm:w-auto border-red-400 text-red-400 hover:bg-red-500/20 hover:text-red-300 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all duration-300 bg-transparent"
+                className="w-full sm:w-auto border-blue-400 text-blue-400 hover:bg-blue-500/20 hover:text-blue-300 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all duration-300 bg-transparent"
               >
                 Schedule Demo
               </Button>
