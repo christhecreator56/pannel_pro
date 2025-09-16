@@ -1,6 +1,7 @@
 "use client"
 
 import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react"
+import Image from "next/image"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -12,7 +13,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center justify-center sm:justify-start space-x-2">
-              <img src="/images/panel-pro-logo-white.png" alt="Panel Pro Logo" className="h-10 sm:h-12 w-auto" />
+              <Image src="/images/panel-pro-logo-white.png" alt="Panel Pro Logo" width={240} height={64} className="h-10 sm:h-12 w-auto" />
             </div>
             <p className="text-gray-300 text-sm leading-relaxed text-center sm:text-left">
               Leading AI-powered car damage assessment platform providing instant, accurate analysis for body repair

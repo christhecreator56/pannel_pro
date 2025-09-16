@@ -4,6 +4,7 @@ import { Shield, Zap, Users, Award, Target, Heart, ArrowRight, CheckCircle } fro
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import SpotlightCard from "@/components/SpotlightCard"
+import Image from "next/image"
 
 export default function AboutPage() {
   const stats = [
@@ -108,9 +109,11 @@ export default function AboutPage() {
                 </Button>
               </div>
               <div className="relative">
-                <img
+                <Image
                   src="/placeholder.svg?height=400&width=600"
                   alt="Panel Pro Technology"
+                  width={600}
+                  height={400}
                   className="rounded-2xl shadow-2xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
@@ -258,9 +261,11 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="relative">
-                <img
+                <Image
                   src="/placeholder.svg?height=400&width=600"
                   alt="Panel Pro Chennai Office"
+                  width={600}
+                  height={400}
                   className="rounded-2xl shadow-2xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>

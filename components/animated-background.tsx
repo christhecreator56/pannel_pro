@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 export default function AnimatedBackground() {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
   const [isClient, setIsClient] = useState(false)
+  const [particleCount, setParticleCount] = useState(15)
 
   useEffect(() => {
     setIsClient(true)
@@ -14,6 +15,10 @@ export default function AnimatedBackground() {
         width: window.innerWidth,
         height: window.innerHeight,
       })
+
+      // Reduce particles on small screens for performance
+      const isSmall = window.innerWidth < 640
+      setParticleCount(isSmall ? 8 : 15)
     }
     
     updateDimensions()
@@ -30,7 +35,7 @@ export default function AnimatedBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {/* Floating particles */}
-      {[...Array(15)].map((_, i) => (
+      {[...Array(particleCount)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute w-2 h-2 bg-blue-500/20 rounded-full"

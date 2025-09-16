@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import StarBorder from "./StarBorder"
 import Link from "next/link"
+import Image from "next/image"
 import { useRouter, usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -109,9 +110,12 @@ export default function Navbar() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <Link href="/">
-              <img
+              <Image
                 src="/images/panel-pro-logo-white.png"
                 alt="Panel Pro Logo"
+                width={300}
+                height={80}
+                priority
                 className="h-12 sm:h-16 lg:h-20 w-auto cursor-pointer"
               />
             </Link>
