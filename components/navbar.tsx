@@ -86,8 +86,8 @@ export default function Navbar() {
       className={cn(
         "fixed left-2 right-2 sm:left-4 sm:right-4 z-50 transition-all duration-500 ease-in-out",
         scrolled
-          ? "bg-black/30 backdrop-blur-xl shadow-2xl border border-red-500/30 rounded-2xl"
-          : "bg-black/20 backdrop-blur-lg shadow-xl border border-red-400/20 rounded-2xl sm:rounded-full",
+          ? "bg-black/30 backdrop-blur-xl shadow-2xl border border-blue-500/30 rounded-2xl"
+          : "bg-black/20 backdrop-blur-lg shadow-xl border border-blue-400/20 rounded-2xl sm:rounded-full",
       )}
       initial={{ y: -100, opacity: 0 }}
       animate={{
@@ -126,8 +126,8 @@ export default function Navbar() {
                 className={cn(
                   "text-sm font-medium transition-all duration-300 px-3 py-2 rounded-lg relative overflow-hidden",
                   isActivePage(item.href)
-                    ? "text-red-400 bg-red-500/20"
-                    : "text-white hover:text-red-400 hover:bg-red-500/20",
+                    ? "text-blue-400 bg-blue-500/20"
+                    : "text-white hover:text-blue-400 hover:bg-blue-500/20",
                 )}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -142,7 +142,7 @@ export default function Navbar() {
                 {item.name}
                 {isActivePage(item.href) && (
                   <motion.div
-                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-red-400 rounded-full"
+                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-400 rounded-full"
                     layoutId="activeIndicator"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
@@ -158,7 +158,7 @@ export default function Navbar() {
               transition={{ delay: 0.4, type: "spring", stiffness: 300 }}
             >
               <StarBorder
-                color="rgba(239, 68, 68, 0.9)"
+                color="rgba(59, 130, 246, 0.9)"
                 speed="4s"
                 thickness={2}
                 className="hover:scale-105 transition-transform duration-300"
@@ -171,7 +171,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-3 rounded-lg text-white hover:bg-red-500/20 transition-colors backdrop-blur-sm touch-manipulation"
+            className="md:hidden p-3 rounded-lg text-white hover:bg-blue-500/20 transition-colors backdrop-blur-sm touch-manipulation"
             aria-label="Toggle menu"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -206,7 +206,7 @@ export default function Navbar() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden bg-black/40 backdrop-blur-xl border-t border-red-500/30 shadow-lg rounded-b-2xl mt-2 overflow-hidden"
+              className="md:hidden bg-black/40 backdrop-blur-xl border-t border-blue-500/30 shadow-lg rounded-b-2xl mt-2 overflow-hidden"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -220,8 +220,8 @@ export default function Navbar() {
                     className={cn(
                       "block w-full text-left font-medium py-3 px-4 rounded-lg transition-colors touch-manipulation text-lg",
                       isActivePage(item.href)
-                        ? "text-red-400 bg-red-500/20"
-                        : "text-white hover:text-red-400 hover:bg-red-500/20",
+                        ? "text-blue-400 bg-blue-500/20"
+                        : "text-white hover:text-blue-400 hover:bg-blue-500/20",
                     )}
                     initial={{ x: -50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -238,7 +238,7 @@ export default function Navbar() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.4 }}
                 >
-                  <StarBorder color="rgba(239, 68, 68, 0.9)" speed="4s" thickness={2} className="w-full py-3 text-lg">
+                  <StarBorder color="rgba(59, 130, 246, 0.9)" speed="4s" thickness={2} className="w-full py-3 text-lg">
                     Join Us
                   </StarBorder>
                 </motion.div>

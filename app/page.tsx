@@ -159,7 +159,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black relative overflow-hidden">
       {/* PDF Status Message */}
       {pdfStatus && (
-        <div className="fixed top-4 right-4 z-50 bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg">
+        <div className="fixed top-4 right-4 z-50 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
           {pdfStatus}
         </div>
       )}
@@ -167,7 +167,7 @@ export default function HomePage() {
       <AnimatedBackground />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-black via-red-900 to-gray-900 text-white">
+      <section className="relative overflow-hidden bg-gradient-to-r from-black via-blue-900 to-gray-900 text-white">
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative container mx-auto px-4 py-16 sm:py-20 lg:py-32">
           <motion.div
@@ -179,7 +179,7 @@ export default function HomePage() {
             <motion.h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 leading-tight" variants={itemVariants}>
               AI-Powered Car
               <motion.span
-                className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400"
+                className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600"
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
@@ -202,7 +202,7 @@ export default function HomePage() {
               >
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-red-500/30 touch-manipulation"
+                  className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-500/30 touch-manipulation"
                   onClick={handleScheduleDemo}
                 >
                   <MessageCircle className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
@@ -219,7 +219,7 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full sm:w-auto border-red-400 text-red-400 hover:bg-red-500/20 hover:text-red-300 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all duration-300 bg-transparent backdrop-blur-sm touch-manipulation"
+                  className="w-full sm:w-auto border-blue-400 text-blue-400 hover:bg-blue-500/20 hover:text-blue-300 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all duration-300 bg-transparent backdrop-blur-sm touch-manipulation"
                 >
                   Learn More
                   <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
@@ -259,11 +259,11 @@ export default function HomePage() {
               >
                 <SpotlightCard
                   className="group hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2"
-                  spotlightColor="rgba(239, 68, 68, 0.15)"
+                  spotlightColor="rgba(59, 130, 246, 0.15)"
                 >
                   <div className="text-center">
                     <motion.div
-                      className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-red-200 transition-colors"
+                      className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 transition-colors"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
@@ -308,11 +308,11 @@ export default function HomePage() {
               >
                 <SpotlightCard
                   className="group hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 h-full"
-                  spotlightColor="rgba(239, 68, 68, 0.1)"
+                  spotlightColor="rgba(59, 130, 246, 0.1)"
                 >
                   <div className="text-center h-full flex flex-col">
                     <motion.div
-                      className="w-20 h-20 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white shadow-lg group-hover:shadow-xl"
+                      className="w-20 h-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white shadow-lg group-hover:shadow-xl"
                       whileHover={{
                         scale: 1.1,
                         boxShadow: "0 20px 40px rgba(239, 68, 68, 0.3)",
@@ -325,7 +325,7 @@ export default function HomePage() {
 
                     <div className="flex-grow">
                       <h3 className="text-xl font-semibold mb-2 text-white">{product.title}</h3>
-                      <p className="text-red-400 font-medium mb-4 text-sm">{product.subtitle}</p>
+                      <p className="text-blue-400 font-medium mb-4 text-sm">{product.subtitle}</p>
                       <p className="text-gray-300 mb-6 text-sm leading-relaxed">{product.description}</p>
 
                       <div className="space-y-2">
@@ -334,7 +334,7 @@ export default function HomePage() {
                           {product.features.map((feature, featureIndex) => (
                             <div
                               key={featureIndex}
-                              className="bg-red-500/10 text-red-300 text-xs px-2 py-1 rounded-full border border-red-500/20 text-center"
+                              className="bg-blue-500/10 text-blue-300 text-xs px-2 py-1 rounded-full border border-blue-500/20 text-center"
                             >
                               {feature}
                             </div>
@@ -347,7 +347,7 @@ export default function HomePage() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="border-red-400 text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-all duration-300 bg-transparent"
+                        className="border-blue-400 text-blue-400 hover:bg-blue-500/20 hover:text-blue-300 transition-all duration-300 bg-transparent"
                         onClick={() => handlePDFOpen(product.subtitle)}
                       >
                         Learn More
@@ -364,7 +364,7 @@ export default function HomePage() {
 
       {/* CTA Section */}
       <section
-        className="py-16 sm:py-20 bg-gradient-to-r from-red-900 to-black text-white relative overflow-hidden"
+        className="py-16 sm:py-20 bg-gradient-to-r from-blue-900 to-black text-white relative overflow-hidden"
         id="chatbot"
       >
         <motion.div
@@ -397,7 +397,7 @@ export default function HomePage() {
               >
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-red-500/30 touch-manipulation"
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-500/30 touch-manipulation"
                   onClick={handleScheduleDemo}
                 >
                   <MessageCircle className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />

@@ -67,13 +67,13 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-black via-red-900 to-gray-900 pt-24 pb-20">
+      <section className="relative overflow-hidden bg-gradient-to-r from-black via-blue-900 to-gray-900 pt-24 pb-20">
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               About
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
                 Panel Pro
               </span>
             </h1>
@@ -102,7 +102,7 @@ export default function AboutPage() {
                   to seconds, and provides accurate, detailed reports that help repair shops deliver exceptional service
                   to their customers.
                 </p>
-                <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-lg px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-red-500/30">
+                <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-500/30">
                   Learn More About Our Technology
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -135,10 +135,10 @@ export default function AboutPage() {
               <SpotlightCard
                 key={index}
                 className="text-center group hover:shadow-xl transition-all duration-300"
-                spotlightColor="rgba(239, 68, 68, 0.15)"
+                spotlightColor="rgba(59, 130, 246, 0.15)"
               >
                 <div className="flex flex-col items-center">
-                  <stat.icon className="h-12 w-12 text-red-400 mb-4 group-hover:text-red-300 transition-colors" />
+                  <stat.icon className="h-12 w-12 text-blue-400 mb-4 group-hover:text-blue-300 transition-colors" />
                   <div className="text-4xl font-bold text-white mb-2">{stat.number}</div>
                   <div className="text-gray-300 font-medium">{stat.label}</div>
                 </div>
@@ -162,12 +162,12 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <Card
                 key={index}
-                className="bg-gray-900 border-red-500/20 hover:border-red-500/40 transition-all duration-300"
+                className="bg-gray-900 border-blue-500/20 hover:border-blue-500/40 transition-all duration-300"
               >
                 <CardContent className="p-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <value.icon className="h-6 w-6 text-red-600" />
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <value.icon className="h-6 w-6 text-blue-600" />
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-white mb-3">{value.title}</h3>
@@ -196,16 +196,16 @@ export default function AboutPage() {
               <SpotlightCard
                 key={index}
                 className="text-center group hover:shadow-xl transition-all duration-300"
-                spotlightColor="rgba(239, 68, 68, 0.1)"
+                spotlightColor="rgba(59, 130, 246, 0.1)"
               >
                 <div className="p-6">
                   <img
                     src={member.image || "/placeholder.svg"}
                     alt={member.name}
-                    className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-red-500/20 group-hover:border-red-500/40 transition-all duration-300"
+                    className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-blue-500/20 group-hover:border-blue-500/40 transition-all duration-300"
                   />
                   <h3 className="text-xl font-semibold text-white mb-2">{member.name}</h3>
-                  <p className="text-red-400 font-medium mb-4">{member.role}</p>
+                  <p className="text-blue-400 font-medium mb-4">{member.role}</p>
                   <p className="text-gray-300 text-sm leading-relaxed">{member.description}</p>
                 </div>
               </SpotlightCard>
@@ -228,23 +228,23 @@ export default function AboutPage() {
                 </p>
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-red-400 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-blue-400 mt-1 flex-shrink-0" />
                     <span className="text-gray-300">State-of-the-art AI development labs</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-red-400 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-blue-400 mt-1 flex-shrink-0" />
                     <span className="text-gray-300">24/7 customer support center</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-red-400 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-blue-400 mt-1 flex-shrink-0" />
                     <span className="text-gray-300">Training and certification facilities</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-red-400 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-blue-400 mt-1 flex-shrink-0" />
                     <span className="text-gray-300">Partnership development center</span>
                   </div>
                 </div>
-                <div className="bg-gray-900 rounded-lg p-6 border border-red-500/20">
+                <div className="bg-gray-900 rounded-lg p-6 border border-blue-500/20">
                   <h3 className="text-lg font-semibold text-white mb-3">Visit Us</h3>
                   <p className="text-gray-300 text-sm">
                     78/34A, Ground Floor
@@ -271,20 +271,20 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-red-900 to-black">
+      <section className="py-20 bg-gradient-to-r from-blue-900 to-black">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Transform Your Business?</h2>
           <p className="text-xl mb-8 text-gray-200 max-w-2xl mx-auto">
             Join hundreds of body repair shops already using Panel Pro to streamline their damage assessment process
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-lg px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-red-500/30">
+            <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-500/30">
               Start Free Trial
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button
               variant="outline"
-              className="border-red-400 text-red-400 hover:bg-red-500/20 hover:text-red-300 text-lg px-8 py-4 rounded-full font-semibold transition-all duration-300 bg-transparent"
+              className="border-blue-400 text-blue-400 hover:bg-blue-500/20 hover:text-blue-300 text-lg px-8 py-4 rounded-full font-semibold transition-all duration-300 bg-transparent"
             >
               Schedule Demo
             </Button>

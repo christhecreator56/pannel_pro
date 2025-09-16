@@ -19,12 +19,12 @@ export default function Footer() {
               shops and automotive professionals.
             </p>
             <div className="flex space-x-4 justify-center sm:justify-start">
-              <a href="#" className="text-gray-400 hover:text-red-400 transition-colors"></a>
-              <a href="#" className="text-gray-400 hover:text-red-400 transition-colors"></a>
-              <a href="#" className="text-gray-400 hover:text-red-400 transition-colors">
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors"></a>
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors"></a>
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-red-400 transition-colors">
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
@@ -35,7 +35,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-white text-center sm:text-left">Contact Us</h3>
             <div className="space-y-3">
               <div className="flex items-start space-x-3 justify-center sm:justify-start">
-                <MapPin className="h-5 w-5 text-red-400 mt-0.5 flex-shrink-0" />
+                <MapPin className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
                 <div className="text-gray-300 text-sm text-center sm:text-left">
                   <p>78/34A, Ground Floor</p>
                   <p>Real Diamond Building, 32 Mount Road</p>
@@ -44,13 +44,13 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex items-center space-x-3 justify-center sm:justify-start">
-                <Phone className="h-5 w-5 text-red-400 flex-shrink-0" />
+                <Phone className="h-5 w-5 text-blue-400 flex-shrink-0" />
                 <a href="tel:+919176661178" className="text-gray-300 text-sm hover:text-white transition-colors touch-manipulation">
                   +91 91766 61178
                 </a>
               </div>
               <div className="flex items-center space-x-3 justify-center sm:justify-start">
-                <Mail className="h-5 w-5 text-red-400 flex-shrink-0" />
+                <Mail className="h-5 w-5 text-blue-400 flex-shrink-0" />
                 <a
                   href="mailto:support@panelpro.ai"
                   className="text-gray-300 text-sm hover:text-white transition-colors touch-manipulation"
@@ -135,14 +135,14 @@ export default function Footer() {
                 <p>Monday - Friday: 9:00 AM - 6:00 PM PST</p>
                 <p>Saturday: 10:00 AM - 4:00 PM PST</p>
                 <p>Sunday: Closed</p>
-                <p className="text-red-400 mt-2">24/7 AI Assessment Available</p>
+                <p className="text-blue-400 mt-2">24/7 AI Assessment Available</p>
               </div>
             </div>
             <div className="text-center md:text-left">
               <h4 className="text-lg font-semibold text-white mb-3">Emergency Support</h4>
               <div className="space-y-1 text-sm text-gray-300">
                 <p>For urgent damage assessments:</p>
-                <a href="tel:+919176661178" className="text-red-400 hover:text-red-300 transition-colors font-medium touch-manipulation">
+                <a href="tel:+919176661178" className="text-blue-400 hover:text-blue-300 transition-colors font-medium touch-manipulation">
                   +91 91766 61178
                 </a>
                 <p className="text-xs text-gray-400 mt-1">Available 24/7 for emergency claims</p>

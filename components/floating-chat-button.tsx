@@ -14,10 +14,10 @@ export default function FloatingChatButton() {
   return (
     <motion.button
       onClick={handleChatClick}
-      className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-red-500/30 group touch-manipulation"
+      className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-500/30 group touch-manipulation"
       whileHover={{
         scale: 1.1,
-        boxShadow: "0 20px 40px rgba(239, 68, 68, 0.4)",
+        boxShadow: "0 20px 40px rgba(59, 130, 246, 0.4)",
       }}
       whileTap={{ scale: 0.95 }}
       initial={{ scale: 0, opacity: 0 }}
@@ -46,7 +46,7 @@ export default function FloatingChatButton() {
 
       {/* Pulse animation */}
       <motion.div
-        className="absolute inset-0 rounded-full bg-red-500/30"
+        className="absolute inset-0 rounded-full bg-blue-500/30"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.7, 0, 0.7],
