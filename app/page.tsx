@@ -5,13 +5,48 @@ import { Button } from "@/components/ui/button"
 import SpotlightCard from "@/components/SpotlightCard"
 import ScrollReveal from "@/components/scroll-reveal"
 import AnimatedBackground from "@/components/animated-background"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
-import { useState, useMemo, useCallback } from "react"
+import { useState, useMemo, useCallback, useRef, useEffect } from "react"
+import frame001 from "@/frames/Rotating_pan_shot_202604261334_001.png"
+import frame002 from "@/frames/Rotating_pan_shot_202604261334_002.png"
+import frame003 from "@/frames/Rotating_pan_shot_202604261334_003.png"
+import frame004 from "@/frames/Rotating_pan_shot_202604261334_004.png"
+import frame005 from "@/frames/Rotating_pan_shot_202604261334_005.png"
+import frame006 from "@/frames/Rotating_pan_shot_202604261334_006.png"
+import frame007 from "@/frames/Rotating_pan_shot_202604261334_007.png"
+import frame008 from "@/frames/Rotating_pan_shot_202604261334_008.png"
+import frame009 from "@/frames/Rotating_pan_shot_202604261334_009.png"
+import frame010 from "@/frames/Rotating_pan_shot_202604261334_010.png"
+import frame011 from "@/frames/Rotating_pan_shot_202604261334_011.png"
+import frame012 from "@/frames/Rotating_pan_shot_202604261334_012.png"
+import frame013 from "@/frames/Rotating_pan_shot_202604261334_013.png"
+import frame014 from "@/frames/Rotating_pan_shot_202604261334_014.png"
+import frame015 from "@/frames/Rotating_pan_shot_202604261334_015.png"
+import frame016 from "@/frames/Rotating_pan_shot_202604261334_016.png"
+import frame017 from "@/frames/Rotating_pan_shot_202604261334_017.png"
+import frame018 from "@/frames/Rotating_pan_shot_202604261334_018.png"
+import frame019 from "@/frames/Rotating_pan_shot_202604261334_019.png"
+import frame020 from "@/frames/Rotating_pan_shot_202604261334_020.png"
+import frame021 from "@/frames/Rotating_pan_shot_202604261334_021.png"
+import frame022 from "@/frames/Rotating_pan_shot_202604261334_022.png"
+import frame023 from "@/frames/Rotating_pan_shot_202604261334_023.png"
+import frame024 from "@/frames/Rotating_pan_shot_202604261334_024.png"
+import frame025 from "@/frames/Rotating_pan_shot_202604261334_025.png"
+import frame026 from "@/frames/Rotating_pan_shot_202604261334_026.png"
+import frame027 from "@/frames/Rotating_pan_shot_202604261334_027.png"
+import frame028 from "@/frames/Rotating_pan_shot_202604261334_028.png"
+import frame029 from "@/frames/Rotating_pan_shot_202604261334_029.png"
+import frame030 from "@/frames/Rotating_pan_shot_202604261334_030.png"
+import frame031 from "@/frames/Rotating_pan_shot_202604261334_031.png"
+import frame032 from "@/frames/Rotating_pan_shot_202604261334_032.png"
 
 export default function HomePage() {
   const router = useRouter()
   const [pdfStatus, setPdfStatus] = useState<string>("")
+  const [heroImageReady, setHeroImageReady] = useState(false)
+  const heroScrollRef = useRef<HTMLElement | null>(null)
 
   const handleScheduleDemo = useCallback(() => {
     if (typeof window !== 'undefined') {
@@ -155,8 +190,68 @@ export default function HomePage() {
     },
   }
 
+  const heroFrames = useMemo(
+    () => [
+      frame001, frame002, frame003, frame004, frame005, frame006, frame007, frame008,
+      frame009, frame010, frame011, frame012, frame013, frame014, frame015, frame016,
+      frame017, frame018, frame019, frame020, frame021, frame022, frame023, frame024,
+      frame025, frame026, frame027, frame028, frame029, frame030, frame031, frame032,
+    ],
+    []
+  )
+
+  const [activeHeroFrame, setActiveHeroFrame] = useState(0)
+  const HERO_SCROLL_VH_PER_TRANSITION = 12
+  const heroSequenceHeight = `calc(100vh + ${(heroFrames.length - 1) * HERO_SCROLL_VH_PER_TRANSITION}vh)`
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Avoid restoring a previous scroll position on reload/navigation.
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual"
+      }
+      window.scrollTo(0, 0)
+    }
+  }, [])
+
+  useEffect(() => {
+    const updateFrameByScroll = () => {
+      const el = heroScrollRef.current
+      if (!el) return
+
+      const sectionStart = el.offsetTop
+      const sectionEnd = sectionStart + el.offsetHeight - window.innerHeight
+      const sectionRange = Math.max(1, sectionEnd - sectionStart)
+      const rawProgress = (window.scrollY - sectionStart) / sectionRange
+      const progress = Math.max(0, Math.min(1, rawProgress))
+      const frameIndex = Math.min(
+        heroFrames.length - 1,
+        Math.round(progress * (heroFrames.length - 1))
+      )
+
+      setActiveHeroFrame(frameIndex)
+    }
+
+    let rafId = 0
+    const onScroll = () => {
+      if (rafId) return
+      rafId = window.requestAnimationFrame(() => {
+        updateFrameByScroll()
+        rafId = 0
+      })
+    }
+
+    updateFrameByScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener("resize", updateFrameByScroll)
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("resize", updateFrameByScroll)
+      if (rafId) window.cancelAnimationFrame(rafId)
+    }
+  }, [heroFrames.length])
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black relative overflow-hidden">
+    <div className="min-h-screen relative text-slate-50">
       {/* PDF Status Message */}
       {pdfStatus && (
         <div className="fixed top-4 right-4 z-50 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
@@ -166,77 +261,102 @@ export default function HomePage() {
       
       <AnimatedBackground />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-black via-blue-900 to-gray-900 text-white">
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative container mx-auto px-4 py-16 sm:py-20 lg:py-32">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 leading-tight" variants={itemVariants}>
-              AI-Powered Car
-              <motion.span
-                className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600"
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                Body Repair Assessment
-              </motion.span>
-            </motion.h1>
+      {/* Hero Scroll Frames Section */}
+      <section ref={heroScrollRef} className="relative text-white" style={{ height: heroSequenceHeight }}>
+        <div className="sticky top-0 h-screen overflow-hidden">
+          {!heroImageReady && (
+            <div className="absolute inset-0 z-20 flex items-center justify-center bg-black">
+              <p className="text-xs uppercase tracking-[0.24em] text-blue-300">Loading frames...</p>
+            </div>
+          )}
+          <Image
+            src={heroFrames[activeHeroFrame]}
+            alt={`Hero frame ${activeHeroFrame + 1}`}
+            fill
+            priority
+            className="object-cover"
+            onLoadingComplete={() => setHeroImageReady(true)}
+          />
+          {/* Cinematic movie-frame overlay */}
+          <div className="pointer-events-none absolute inset-0 z-10">
+            <div className="absolute inset-x-0 top-0 h-20 bg-black sm:h-24"></div>
+            <div className="absolute inset-x-0 bottom-0 h-20 bg-black sm:h-24"></div>
+            <div className="absolute inset-x-0 top-3 h-px bg-blue-300/35"></div>
+            <div className="absolute inset-x-0 bottom-3 h-px bg-blue-300/35"></div>
+          </div>
+          <div className="absolute inset-x-0 top-0 h-px bg-blue-500/40"></div>
 
-            <motion.p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-gray-200 max-w-3xl mx-auto px-2" variants={itemVariants}>
-              Describe your car damage through our AI chat assistant and get instant, accurate damage analysis powered
-              by Panel Pro's advanced AI technology for body repair professionals
-            </motion.p>
+          <div className="relative container mx-auto flex h-full items-center justify-center px-4">
+            <motion.div
+              className="w-full max-w-4xl p-2 text-center sm:p-4"
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-blue-200/90">
+                Panel Pro Intelligence
+              </p>
+              <h1 className="mb-4 text-3xl font-black uppercase leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
+                AI Powered Car
+                <span className="mt-2 block text-blue-400">Body Repair Assessment</span>
+              </h1>
 
-            <motion.div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4" variants={itemVariants}>
-              <motion.div
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="w-full sm:w-auto"
-              >
-                <Button
-                  size="lg"
-                  className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-500/30 touch-manipulation"
-                  onClick={handleScheduleDemo}
+              <p className="mx-auto mb-6 max-w-2xl text-sm text-slate-200 sm:text-base md:text-lg">
+                Scroll to preview all 32 visual frames, then continue into the next section.
+              </p>
+
+              <div className="flex flex-col justify-center gap-3 px-2 sm:flex-row sm:gap-4">
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  className="w-full sm:w-auto"
                 >
-                  <MessageCircle className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
-                  Schedule Demo
-                </Button>
-              </motion.div>
+                  <Button
+                    size="lg"
+                    className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold uppercase tracking-wide shadow-[0_0_30px_rgba(37,99,235,0.45)] transition-all duration-300 border border-blue-400/60 touch-manipulation"
+                    onClick={handleScheduleDemo}
+                  >
+                    <MessageCircle className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
+                    Schedule Demo
+                  </Button>
+                </motion.div>
 
-              <motion.div
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="w-full sm:w-auto"
-              >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="w-full sm:w-auto border-blue-400 text-blue-400 hover:bg-blue-500/20 hover:text-blue-300 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all duration-300 bg-transparent backdrop-blur-sm touch-manipulation"
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  className="w-full sm:w-auto"
                 >
-                  Learn More
-                  <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
-                </Button>
-              </motion.div>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full sm:w-auto border-blue-500/70 text-blue-300 hover:bg-blue-600/20 hover:text-blue-200 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold uppercase tracking-wide transition-all duration-300 bg-black/40 touch-manipulation"
+                  >
+                    Learn More
+                    <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
+                  </Button>
+                </motion.div>
+              </div>
             </motion.div>
-          </motion.div>
+          </div>
+
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.22em] text-blue-300/80">
+            Frame {activeHeroFrame + 1} / {heroFrames.length}
+          </div>
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.22em] text-blue-300/80">
+            Scroll to next frame
+          </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-16 sm:py-20 bg-black relative" id="products">
+      <section className="py-16 sm:py-20 relative" id="products">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 px-2">Why Choose Our Platform?</h2>
-              <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-2">
+              <p className="font-script text-3xl text-blue-200 mb-2">Why teams love Panel Pro</p>
+              <h2 className="section-title text-2xl sm:text-3xl md:text-4xl text-white mb-3 sm:mb-4 px-2">Why Choose Our Platform?</h2>
+              <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto px-2">
                 Experience the future of body repair assessment with Panel Pro's cutting-edge AI technology
               </p>
             </div>
@@ -258,7 +378,7 @@ export default function HomePage() {
                 custom={feature.delay}
               >
                 <SpotlightCard
-                  className="group hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2"
+                  className="group glass-card card-rise rounded-3xl"
                   spotlightColor="rgba(59, 130, 246, 0.15)"
                 >
                   <div className="text-center">
@@ -269,8 +389,8 @@ export default function HomePage() {
                     >
                       {feature.icon}
                     </motion.div>
-                    <h3 className="text-xl font-semibold mb-4 text-white">{feature.title}</h3>
-                    <p className="text-gray-300">{feature.description}</p>
+                    <h3 className="text-xl font-bold mb-4 text-white">{feature.title}</h3>
+                    <p className="text-slate-300">{feature.description}</p>
                   </div>
                 </SpotlightCard>
               </motion.div>
@@ -280,16 +400,15 @@ export default function HomePage() {
       </section>
 
       {/* Products Section */}
-      <section className="py-16 sm:py-20 bg-gray-900 relative">
+      <section className="py-16 sm:py-20 relative">
         <div className="container mx-auto px-4">
-          <ScrollReveal>
-            <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 px-2">Our Products</h2>
-              <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-2">
-                Tailored AI solutions for different automotive industry professionals
-              </p>
-            </div>
-          </ScrollReveal>
+          <div className="text-center mb-12 sm:mb-16">
+            <p className="font-script text-3xl text-blue-200 mb-2">Built for every workflow</p>
+            <h2 className="section-title text-2xl sm:text-3xl md:text-4xl text-white mb-3 sm:mb-4 px-2">Our Products</h2>
+            <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto px-2">
+              Tailored AI solutions for different automotive industry professionals
+            </p>
+          </div>
 
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto"
@@ -307,7 +426,7 @@ export default function HomePage() {
                 custom={product.delay}
               >
                 <SpotlightCard
-                  className="group hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 h-full"
+                  className="group glass-card card-rise rounded-3xl h-full"
                   spotlightColor="rgba(59, 130, 246, 0.1)"
                 >
                   <div className="text-center h-full flex flex-col">
@@ -324,9 +443,9 @@ export default function HomePage() {
                     </motion.div>
 
                     <div className="flex-grow">
-                      <h3 className="text-xl font-semibold mb-2 text-white">{product.title}</h3>
+                      <h3 className="text-xl font-bold mb-2 text-white">{product.title}</h3>
                       <p className="text-blue-400 font-medium mb-4 text-sm">{product.subtitle}</p>
-                      <p className="text-gray-300 mb-6 text-sm leading-relaxed">{product.description}</p>
+                      <p className="text-slate-300 mb-6 text-sm leading-relaxed">{product.description}</p>
 
                       <div className="space-y-2">
                         <h4 className="text-sm font-semibold text-white mb-3">Key Features:</h4>
@@ -364,7 +483,7 @@ export default function HomePage() {
 
       {/* CTA Section */}
       <section
-        className="py-16 sm:py-20 bg-gradient-to-r from-blue-900 to-black text-white relative overflow-hidden"
+        className="py-16 sm:py-20 text-white relative overflow-hidden"
         id="chatbot"
       >
         <motion.div
@@ -385,9 +504,10 @@ export default function HomePage() {
 
         <div className="container mx-auto px-4 text-center relative">
           <ScrollReveal>
-            <motion.div whileInView={{ scale: 1 }} initial={{ scale: 0.9 }} transition={{ duration: 0.5 }}>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 px-2">Ready to Get Started?</h2>
-              <p className="text-lg sm:text-xl mb-6 sm:mb-8 text-gray-200 max-w-2xl mx-auto px-2">
+            <motion.div whileInView={{ scale: 1 }} initial={{ scale: 0.9 }} transition={{ duration: 0.5 }} className="glass-panel rounded-3xl px-6 py-10 sm:p-12">
+              <p className="font-script text-3xl text-blue-200 mb-2">Let your assessments shine</p>
+              <h2 className="section-title text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 px-2">Ready to Get Started?</h2>
+              <p className="text-lg sm:text-xl mb-6 sm:mb-8 text-slate-200 max-w-2xl mx-auto px-2">
                 Join thousands of users who trust our AI-powered damage assessment platform
               </p>
               <motion.div

@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Great_Vibes } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/navbar"
 import { Toaster } from "@/components/ui/toaster"
@@ -10,6 +10,11 @@ import FloatingChatButton from "@/components/floating-chat-button"
 import { Suspense } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
+})
 
 export const metadata: Metadata = {
   title: "Panel Pro - AI for Body Repair Assessment",
@@ -23,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
         <meta name="theme-color" content="#1f2937" />
@@ -31,7 +36,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
-      <body className={`${inter.className} overflow-x-hidden`}>
+      <body className={`${inter.className} ${greatVibes.variable} overflow-x-hidden`}>
         <Navbar />
         <Suspense fallback={<div className="min-h-screen bg-gray-900" />}>
           <PageTransition>

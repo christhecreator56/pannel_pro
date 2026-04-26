@@ -1,6 +1,6 @@
 "use client"
 
-import { Car, Shield, Building2, ArrowRight, CheckCircle, Star, Users, TrendingUp } from "lucide-react"
+import { Car, Shield, Building2, ArrowRight, CheckCircle, Star, Users, TrendingUp, Smartphone, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -11,6 +11,21 @@ import { useState, useMemo, useCallback, useEffect } from "react"
 export default function ProductsPage() {
   const [pdfStatus, setPdfStatus] = useState<string>("")
   const [isLoading, setIsLoading] = useState(true)
+  const [selectedPhoneColors, setSelectedPhoneColors] = useState<Record<string, string>>({
+    ct: "Midnight Black",
+    ci: "Midnight Black",
+    cd: "Midnight Black",
+  })
+  const [activeFeatureSlides, setActiveFeatureSlides] = useState<Record<string, number>>({
+    ct: 0,
+    ci: 0,
+    cd: 0,
+  })
+  const [expandedFeatureIds, setExpandedFeatureIds] = useState<Record<string, string>>({
+    ct: "ct-scan",
+    ci: "ci-claims",
+    cd: "cd-inspection",
+  })
 
   // Memoize the PDF handler to prevent unnecessary re-renders
   const handlePDFOpen = useCallback((productSubtitle: string) => {
@@ -87,9 +102,30 @@ export default function ProductsPage() {
     },
   }
 
+  const phoneColors = useMemo(
+    () => [
+      { name: "Midnight Black", className: "from-zinc-700 via-zinc-900 to-black" },
+      { name: "Ocean Blue", className: "from-blue-500 via-blue-700 to-blue-900" },
+      { name: "Sunset Gold", className: "from-amber-300 via-amber-500 to-orange-700" },
+      { name: "Forest Green", className: "from-emerald-300 via-emerald-600 to-emerald-900" },
+    ],
+    []
+  )
+
   // Memoize products data to prevent unnecessary re-renders
   const products = useMemo(() => [
     {
+      id: "ct",
+      audience: "For Car Traders",
+      theme: {
+        iconBg: "from-sky-500 to-blue-700",
+        accentText: "text-sky-300",
+        accentSoftText: "text-sky-200",
+        accentBorder: "border-sky-400/30",
+        accentSoftBg: "bg-sky-500/10",
+        accentHover: "hover:bg-sky-500/10 hover:border-sky-400/40",
+        badge: "CT",
+      },
       icon: <Car className="h-12 w-12" />,
       title: "PanelPro for Car Traders",
       subtitle: "(CT)",
@@ -119,8 +155,39 @@ export default function ProductsPage() {
         { label: "Accuracy Rate", value: "99%" },
         { label: "Customer Satisfaction", value: "95%" },
       ],
+      showcaseFeatures: [
+        {
+          id: "ct-scan",
+          title: "Instant Trade-In Scan",
+          summary: "Capture vehicle condition in one guided flow.",
+          details: "Inspect panel damage and grade condition from your phone before making a trade-in offer.",
+        },
+        {
+          id: "ct-market",
+          title: "Live Market Benchmarks",
+          summary: "Compare offers with local market trends.",
+          details: "Use real-time valuation guidance with pricing confidence bands for smarter trade decisions.",
+        },
+        {
+          id: "ct-report",
+          title: "Shareable Buyer Report",
+          summary: "Deliver a clean PDF condition report instantly.",
+          details: "Generate transparent reports with image evidence so buyers trust your listed vehicle quality.",
+        },
+      ],
     },
     {
+      id: "ci",
+      audience: "For Insurance Teams",
+      theme: {
+        iconBg: "from-violet-500 to-fuchsia-700",
+        accentText: "text-violet-300",
+        accentSoftText: "text-violet-200",
+        accentBorder: "border-violet-400/30",
+        accentSoftBg: "bg-violet-500/10",
+        accentHover: "hover:bg-violet-500/10 hover:border-violet-400/40",
+        badge: "CI",
+      },
       icon: <Shield className="h-12 w-12" />,
       title: "PanelPro for Car Insurance",
       subtitle: "(CI)",
@@ -150,8 +217,39 @@ export default function ProductsPage() {
         { label: "Fraud Reduction", value: "60%" },
         { label: "Cost Savings", value: "45%" },
       ],
+      showcaseFeatures: [
+        {
+          id: "ci-claims",
+          title: "Smart Claims Intake",
+          summary: "Classify and route claims automatically.",
+          details: "Auto-triage incoming cases by damage type, severity, and policy rules to reduce queue time.",
+        },
+        {
+          id: "ci-fraud",
+          title: "Fraud Signal Detection",
+          summary: "Flag anomalies before payout approval.",
+          details: "Cross-check claim evidence, repair history, and behavior patterns to surface suspicious claims.",
+        },
+        {
+          id: "ci-estimate",
+          title: "Repair Cost Intelligence",
+          summary: "Estimate repair spend with high precision.",
+          details: "Blend parts, labor, and regional rates into insurer-ready estimates with clear justification.",
+        },
+      ],
     },
     {
+      id: "cd",
+      audience: "For Car Dealers",
+      theme: {
+        iconBg: "from-emerald-500 to-teal-700",
+        accentText: "text-emerald-300",
+        accentSoftText: "text-emerald-200",
+        accentBorder: "border-emerald-400/30",
+        accentSoftBg: "bg-emerald-500/10",
+        accentHover: "hover:bg-emerald-500/10 hover:border-emerald-400/40",
+        badge: "CD",
+      },
       icon: <Building2 className="h-12 w-12" />,
       title: "PanelPro for Car Dealers",
       subtitle: "(CD)",
@@ -181,8 +279,48 @@ export default function ProductsPage() {
         { label: "Warranty Reduction", value: "50%" },
         { label: "Customer Trust", value: "98%" },
       ],
+      showcaseFeatures: [
+        {
+          id: "cd-inspection",
+          title: "Pre-Sale Inspection Mode",
+          summary: "Standardize checks across your inventory.",
+          details: "Follow guided inspection templates so every vehicle gets consistent grading and issue capture.",
+        },
+        {
+          id: "cd-warranty",
+          title: "Warranty Readiness",
+          summary: "Assess and document warranty risk clearly.",
+          details: "Track unresolved defects and recommended fixes before sale to prevent post-sale claim disputes.",
+        },
+        {
+          id: "cd-showroom",
+          title: "Customer-Facing Showcase",
+          summary: "Present transparent condition highlights in-store.",
+          details: "Display trusted inspection snapshots and service history that help customers buy with confidence.",
+        },
+      ],
     },
   ], [])
+
+  const getActiveColorClass = useCallback(
+    (productId: string) =>
+      phoneColors.find((color) => color.name === selectedPhoneColors[productId])?.className ?? phoneColors[0].className,
+    [phoneColors, selectedPhoneColors]
+  )
+
+  const goToNextFeature = useCallback((productId: string, featureCount: number) => {
+    setActiveFeatureSlides((prev) => ({
+      ...prev,
+      [productId]: ((prev[productId] ?? 0) + 1) % featureCount,
+    }))
+  }, [])
+
+  const goToPreviousFeature = useCallback((productId: string, featureCount: number) => {
+    setActiveFeatureSlides((prev) => ({
+      ...prev,
+      [productId]: ((prev[productId] ?? 0) - 1 + featureCount) % featureCount,
+    }))
+  }, [])
 
   // Loading skeleton component
   const LoadingSkeleton = () => (
@@ -239,38 +377,14 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+    <div className="min-h-screen text-white">
       {pdfStatus && (
         <div className="fixed top-4 right-4 z-50 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
           {pdfStatus}
         </div>
       )}
       
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-black via-blue-900 to-gray-900 pt-24 pb-20">
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative container mx-auto px-4">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight" variants={itemVariants}>
-              Our
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-                Products
-              </span>
-            </motion.h1>
-            <motion.p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto" variants={itemVariants}>
-              Tailored AI solutions for different automotive industry professionals. Choose the perfect PanelPro solution for your business needs.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Products Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-16 sm:space-y-20">
             {products.map((product, index) => (
@@ -283,103 +397,293 @@ export default function ProductsPage() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.1 }}
               >
-                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}>
-                  {/* Product Info */}
-                  <div className={`space-y-6 lg:space-y-8 ${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
-                    <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white shadow-lg flex-shrink-0">
-                        {product.icon}
+                <div className="mb-5 flex items-center gap-3">
+                  <span className={`inline-flex items-center rounded-full border px-3 py-1 text-sm font-semibold tracking-wide ${product.theme.accentBorder} ${product.theme.accentSoftBg} ${product.theme.accentSoftText}`}>
+                    {product.theme.badge}
+                  </span>
+                  <p className={`text-sm sm:text-base font-medium ${product.theme.accentText}`}>{product.audience}</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-6 xl:grid-cols-12 auto-rows-auto items-stretch gap-6 lg:gap-7">
+                  <div className="md:col-span-3 xl:col-span-5 space-y-3">
+                    <h3 className="text-xl font-semibold text-white">Product Overview</h3>
+                    <SpotlightCard
+                      className="h-full p-6 sm:p-7 glass-card rounded-3xl card-rise"
+                      spotlightColor="rgba(59, 130, 246, 0.1)"
+                    >
+                      <div className="space-y-5">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                        <div className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r ${product.theme.iconBg} rounded-full flex items-center justify-center text-white shadow-lg flex-shrink-0`}>
+                          {product.icon}
+                        </div>
+                        <div className="flex-1">
+                          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">{product.title}</h2>
+                          <p className={`font-medium text-lg mt-1 ${product.theme.accentText}`}>{product.subtitle}</p>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">{product.title}</h2>
-                        <p className="text-blue-400 font-medium text-lg mt-1">{product.subtitle}</p>
+                      <p className="text-base sm:text-lg text-slate-100 leading-relaxed text-left">{product.description}</p>
+                      </div>
+                    </SpotlightCard>
+                  </div>
+
+                  <div className="md:col-span-3 xl:col-span-7 space-y-3">
+                    <h3 className="text-xl font-semibold text-white">Interactive iPhone Showcase</h3>
+                    <SpotlightCard
+                      className="h-full p-5 sm:p-6 glass-card rounded-3xl card-rise space-y-5"
+                      spotlightColor="rgba(59, 130, 246, 0.1)"
+                    >
+                    <div className="flex items-center justify-between gap-3">
+                      <div className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm ${product.theme.accentBorder} ${product.theme.accentSoftBg} ${product.theme.accentSoftText}`}>
+                        <Smartphone className="h-4 w-4" />
+                        iPhone Showcase
+                      </div>
+                      <p className="text-sm text-slate-200">Swipe-ready • Responsive</p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {phoneColors.map((color) => {
+                        const isActive = selectedPhoneColors[product.id] === color.name
+                        return (
+                          <button
+                            key={`${product.id}-${color.name}`}
+                            type="button"
+                            onClick={() =>
+                              setSelectedPhoneColors((prev) => ({
+                                ...prev,
+                                [product.id]: color.name,
+                              }))
+                            }
+                            className={`rounded-full border px-3 py-1.5 text-sm transition-all duration-300 ${
+                              isActive
+                                ? "border-blue-300 bg-blue-500/20 text-blue-100"
+                                : "border-white/30 bg-white/10 text-slate-100 hover:border-white/50"
+                            }`}
+                          >
+                            {color.name}
+                          </button>
+                        )
+                      })}
+                    </div>
+
+                    <div className="flex flex-col items-center gap-4">
+                      <motion.div
+                        key={`${product.id}-${selectedPhoneColors[product.id]}`}
+                        initial={{ scale: 0.96, opacity: 0.85 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.35 }}
+                        className={`w-[260px] sm:w-[300px] rounded-[2.4rem] p-2 bg-gradient-to-br ${getActiveColorClass(product.id)} shadow-[0_25px_45px_rgba(0,0,0,0.42)]`}
+                      >
+                        <div className="rounded-[2rem] bg-slate-950 p-3 border border-white/10">
+                          <div className="mx-auto mb-3 h-5 w-24 rounded-b-2xl bg-black/70"></div>
+                          <div className="rounded-[1.4rem] bg-gradient-to-b from-slate-900 to-slate-950 border border-white/10 overflow-hidden min-h-[360px]">
+                            <motion.div
+                              key={`${product.id}-${activeFeatureSlides[product.id] ?? 0}`}
+                              initial={{ x: 20, opacity: 0 }}
+                              animate={{ x: 0, opacity: 1 }}
+                              transition={{ duration: 0.25 }}
+                              className="h-full p-4 flex flex-col justify-between"
+                            >
+                              <div>
+                                <p className={`text-xs ${product.theme.accentText}`}>PanelPro {product.subtitle} App</p>
+                                <h4 className="text-white text-lg font-semibold mt-1">
+                                  {product.showcaseFeatures[activeFeatureSlides[product.id] ?? 0].title}
+                                </h4>
+                                <p className="text-slate-100 text-sm mt-2 leading-relaxed">
+                                  {product.showcaseFeatures[activeFeatureSlides[product.id] ?? 0].details}
+                                </p>
+                              </div>
+                              <div className="grid grid-cols-2 gap-2 mt-5">
+                                <div className="rounded-xl bg-white/5 border border-white/10 p-2.5">
+                                  <p className="text-[11px] text-slate-200">{product.stats[0].label}</p>
+                                  <p className="text-white text-base font-semibold">{product.stats[0].value}</p>
+                                </div>
+                                <div className="rounded-xl bg-white/5 border border-white/10 p-2.5">
+                                  <p className="text-[11px] text-slate-200">{product.stats[1].label}</p>
+                                  <p className="text-white text-base font-semibold">{product.stats[1].value}</p>
+                                </div>
+                              </div>
+                            </motion.div>
+                          </div>
+                        </div>
+                      </motion.div>
+
+                      <div className="flex items-center gap-3">
+                        <Button
+                          type="button"
+                          variant="outline"
+                          onClick={() => goToPreviousFeature(product.id, product.showcaseFeatures.length)}
+                          className="border-white/20 text-white hover:bg-white/10 bg-transparent h-8 w-8 p-0"
+                        >
+                          <ChevronLeft className="h-4 w-4" />
+                        </Button>
+                        <div className="flex items-center gap-1.5">
+                          {product.showcaseFeatures.map((feature, idx) => (
+                            <button
+                              key={feature.id}
+                              type="button"
+                              onClick={() =>
+                                setActiveFeatureSlides((prev) => ({
+                                  ...prev,
+                                  [product.id]: idx,
+                                }))
+                              }
+                              className={`h-2 rounded-full transition-all duration-300 ${
+                                (activeFeatureSlides[product.id] ?? 0) === idx ? "w-7 bg-blue-400" : "w-2 bg-white/35"
+                              }`}
+                              aria-label={`Go to ${feature.title}`}
+                            />
+                          ))}
+                        </div>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          onClick={() => goToNextFeature(product.id, product.showcaseFeatures.length)}
+                          className="border-white/20 text-white hover:bg-white/10 bg-transparent h-8 w-8 p-0"
+                        >
+                          <ChevronRight className="h-4 w-4" />
+                        </Button>
                       </div>
                     </div>
 
-                    <p className="text-base sm:text-lg text-gray-300 leading-relaxed text-justify">{product.description}</p>
+                    <div className="space-y-2">
+                      {product.showcaseFeatures.map((feature) => {
+                        const isOpen = expandedFeatureIds[product.id] === feature.id
+                        return (
+                          <button
+                            key={feature.id}
+                            type="button"
+                            onClick={() =>
+                              setExpandedFeatureIds((prev) => ({
+                                ...prev,
+                                [product.id]: isOpen ? "" : feature.id,
+                              }))
+                            }
+                            className={`w-full rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-left transition-all duration-300 ${product.theme.accentHover}`}
+                          >
+                            <div className="flex items-start justify-between gap-3">
+                              <div>
+                                <p className="text-white text-sm font-medium">{feature.title}</p>
+                                <p className="text-xs text-slate-100 mt-1">{feature.summary}</p>
+                              </div>
+                              <span className={`text-lg leading-none ${product.theme.accentText}`}>{isOpen ? "−" : "+"}</span>
+                            </div>
+                            <motion.div
+                              initial={false}
+                              animate={{
+                                height: isOpen ? "auto" : 0,
+                                opacity: isOpen ? 1 : 0,
+                                marginTop: isOpen ? 8 : 0,
+                              }}
+                              className="overflow-hidden text-xs text-slate-200 leading-relaxed"
+                            >
+                              {feature.details}
+                            </motion.div>
+                          </button>
+                        )
+                      })}
+                    </div>
+                    </SpotlightCard>
+                  </div>
 
-                    <div className="space-y-4 lg:space-y-6">
-                      <h3 className="text-lg sm:text-xl font-semibold text-white">Key Features:</h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
-                        {product.detailedFeatures.map((feature, featureIndex) => (
-                          <div key={featureIndex} className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-300 text-sm sm:text-base leading-relaxed">{feature}</span>
-                          </div>
+                  <div className="md:col-span-4 xl:col-span-6 space-y-3">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white">Key Features</h3>
+                    <SpotlightCard
+                      className="h-full p-6 glass-card rounded-3xl card-rise"
+                      spotlightColor="rgba(59, 130, 246, 0.1)"
+                    >
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {product.detailedFeatures.map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex items-start space-x-3">
+                          <CheckCircle className={`h-5 w-5 mt-0.5 flex-shrink-0 ${product.theme.accentText}`} />
+                          <span className="text-slate-100 text-sm sm:text-base leading-relaxed">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                    </SpotlightCard>
+                  </div>
+
+                  <div className="md:col-span-2 xl:col-span-3 space-y-3">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white">Performance Stats</h3>
+                    <SpotlightCard
+                      className="h-full p-6 glass-card rounded-3xl card-rise"
+                      spotlightColor="rgba(59, 130, 246, 0.1)"
+                    >
+                    <div className="grid grid-cols-3 gap-4">
+                      {product.stats.map((stat, statIndex) => (
+                        <div key={statIndex} className="text-center">
+                          <div className={`text-xl sm:text-2xl font-bold ${product.theme.accentText}`}>{stat.value}</div>
+                          <div className="text-xs text-slate-100 leading-tight">{stat.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                    </SpotlightCard>
+                  </div>
+
+                  <div className="md:col-span-6 xl:col-span-3 space-y-3">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white">Customer Testimonial</h3>
+                    <Card className="h-full glass-card border-blue-500/20 rounded-3xl card-rise">
+                      <CardContent className="p-6">
+                      <div className="flex items-center space-x-1 mb-3">
+                        {[...Array(product.testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
                         ))}
                       </div>
-                    </div>
-
-                    <div className="space-y-4 lg:space-y-6">
-                      <h3 className="text-lg sm:text-xl font-semibold text-white">Benefits:</h3>
-                      <div className="space-y-3">
-                        {product.benefits.map((benefit, benefitIndex) => (
-                          <div key={benefitIndex} className="flex items-center space-x-3">
-                            <TrendingUp className="h-4 w-4 text-green-400 flex-shrink-0" />
-                            <span className="text-gray-300 text-sm sm:text-base leading-relaxed">{benefit}</span>
-                          </div>
-                        ))}
+                      <p className="text-slate-100 italic mb-4 text-sm sm:text-base leading-relaxed text-left">"{product.testimonial.text}"</p>
+                      <div className="flex items-center space-x-2">
+                        <Users className={`h-4 w-4 flex-shrink-0 ${product.theme.accentText}`} />
+                        <span className="text-sm text-slate-200">{product.testimonial.author}</span>
                       </div>
-                    </div>
+                      </CardContent>
+                    </Card>
+                  </div>
 
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                      <Button className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-3 text-base font-medium">
+                  <div className="md:col-span-3 xl:col-span-6 space-y-3">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white">Benefits</h3>
+                    <SpotlightCard
+                      className="h-full p-6 glass-card rounded-3xl card-rise"
+                      spotlightColor="rgba(59, 130, 246, 0.1)"
+                    >
+                    <div className="space-y-3 mb-5">
+                      {product.benefits.map((benefit, benefitIndex) => (
+                        <div key={benefitIndex} className="flex items-center space-x-3">
+                          <TrendingUp className="h-4 w-4 text-green-400 flex-shrink-0" />
+                          <span className="text-slate-100 text-sm sm:text-base leading-relaxed">{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                      <Button className={`w-full sm:w-auto bg-gradient-to-r ${product.theme.iconBg} text-white px-6 py-3 text-base font-medium`}>
                         Get Started
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                       <Button
                         variant="outline"
-                        className="w-full sm:w-auto border-blue-400 text-blue-400 hover:bg-blue-500/20 hover:text-blue-300 transition-all duration-300 bg-transparent px-6 py-3 text-base font-medium"
+                        className={`w-full sm:w-auto transition-all duration-300 bg-transparent px-6 py-3 text-base font-medium ${product.theme.accentBorder} ${product.theme.accentText} ${product.theme.accentHover}`}
                         onClick={() => handlePDFOpen(product.subtitle)}
                       >
                         Learn More
                       </Button>
                     </div>
+                    </SpotlightCard>
                   </div>
 
-                  {/* Product Stats & Testimonial */}
-                  <div className={`space-y-6 lg:space-y-8 ${index % 2 === 1 ? "lg:col-start-1" : ""}`}>
-                    {/* Stats */}
-                    <SpotlightCard className="p-4 sm:p-6" spotlightColor="rgba(59, 130, 246, 0.1)">
-                      <h3 className="text-lg sm:text-xl font-semibold text-white mb-4 text-center lg:text-left">Performance Stats</h3>
-                      <div className="grid grid-cols-3 gap-4 sm:gap-6">
-                        {product.stats.map((stat, statIndex) => (
-                          <div key={statIndex} className="text-center">
-                            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-400">{stat.value}</div>
-                            <div className="text-xs sm:text-sm text-gray-300 leading-tight">{stat.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </SpotlightCard>
-
-                    {/* Testimonial */}
-                    <Card className="bg-gray-900 border-blue-500/20">
-                      <CardContent className="p-4 sm:p-6">
-                        <div className="flex items-center space-x-1 mb-3">
-                          {[...Array(product.testimonial.rating)].map((_, i) => (
-                            <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                          ))}
-                        </div>
-                        <p className="text-gray-300 italic mb-4 text-sm sm:text-base leading-relaxed text-justify">"{product.testimonial.text}"</p>
-                        <div className="flex items-center space-x-2">
-                          <Users className="h-4 w-4 text-blue-400 flex-shrink-0" />
-                          <span className="text-sm text-gray-400">{product.testimonial.author}</span>
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    {/* Feature Tags */}
-                    <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+                  <div className="md:col-span-3 xl:col-span-6 space-y-3">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white">Feature Tags</h3>
+                    <SpotlightCard
+                      className="h-full p-6 glass-card rounded-3xl card-rise"
+                      spotlightColor="rgba(59, 130, 246, 0.1)"
+                    >
+                    <div className="flex flex-wrap gap-2">
                       {product.features.map((feature, featureIndex) => (
                         <Badge
                           key={featureIndex}
                           variant="outline"
-                          className="border-blue-500/30 text-blue-300 bg-blue-500/10 text-xs sm:text-sm px-3 py-1"
+                          className={`text-xs sm:text-sm px-3 py-1 ${product.theme.accentBorder} ${product.theme.accentText} ${product.theme.accentSoftBg}`}
                         >
                           {feature}
                         </Badge>
                       ))}
                     </div>
+                    </SpotlightCard>
                   </div>
                 </div>
               </motion.div>
@@ -389,7 +693,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Comparison Section */}
-      <section className="py-16 sm:py-20 bg-gray-900">
+      <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-12 sm:mb-16"
@@ -398,7 +702,8 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
-            <motion.h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4" variants={itemVariants}>
+            <motion.p className="font-script text-3xl text-blue-200 mb-2" variants={itemVariants}>Compare with confidence</motion.p>
+            <motion.h2 className="section-title text-2xl sm:text-3xl lg:text-4xl text-white mb-4" variants={itemVariants}>
               Choose Your Solution
             </motion.h2>
             <motion.p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed" variants={itemVariants}>
@@ -419,22 +724,25 @@ export default function ProductsPage() {
                 variants={itemVariants}
                 style={{ willChange: "transform, opacity" }}
               >
-                <SpotlightCard className="h-full p-4 sm:p-6 text-center" spotlightColor="rgba(59, 130, 246, 0.1)">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 text-white">
+                <SpotlightCard className="h-full p-4 sm:p-6 text-center glass-card rounded-3xl card-rise" spotlightColor="rgba(59, 130, 246, 0.1)">
+                  <div className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold mb-3 ${product.theme.accentBorder} ${product.theme.accentSoftBg} ${product.theme.accentSoftText}`}>
+                    {product.theme.badge} • {product.audience}
+                  </div>
+                  <div className={`w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r ${product.theme.iconBg} rounded-full flex items-center justify-center mx-auto mb-4 text-white`}>
                     {product.icon}
                   </div>
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 leading-tight">{product.title}</h3>
-                  <p className="text-blue-400 font-medium mb-3 sm:mb-4">{product.subtitle}</p>
-                  <p className="text-gray-300 text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed text-justify">{product.description}</p>
+                  <p className={`font-medium mb-3 sm:mb-4 ${product.theme.accentText}`}>{product.subtitle}</p>
+                  <p className="text-slate-100 text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed text-left">{product.description}</p>
                   <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                     {product.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center space-x-2 sm:space-x-3">
-                        <CheckCircle className="h-4 w-4 text-blue-400 flex-shrink-0" />
-                        <span className="text-gray-300 text-xs sm:text-sm leading-relaxed">{feature}</span>
+                        <CheckCircle className={`h-4 w-4 flex-shrink-0 ${product.theme.accentText}`} />
+                        <span className="text-slate-100 text-xs sm:text-sm leading-relaxed">{feature}</span>
                       </div>
                     ))}
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-sm sm:text-base py-2 sm:py-3">
+                  <Button className={`w-full bg-gradient-to-r ${product.theme.iconBg} text-white text-sm sm:text-base py-2 sm:py-3`}>
                     Choose Plan
                   </Button>
                 </SpotlightCard>
@@ -445,7 +753,7 @@ export default function ProductsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-20 bg-gradient-to-r from-blue-900 to-black">
+      <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={containerVariants}
@@ -453,7 +761,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
-            <motion.h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-white leading-tight" variants={itemVariants}>
+            <motion.h2 className="section-title text-2xl sm:text-3xl lg:text-4xl mb-4 sm:mb-6 text-white leading-tight" variants={itemVariants}>
               Ready to Transform Your Business?
             </motion.h2>
             <motion.p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 text-gray-200 max-w-2xl mx-auto leading-relaxed" variants={itemVariants}>

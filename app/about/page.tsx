@@ -4,7 +4,7 @@ import { Shield, Zap, Users, Award, Target, Heart, ArrowRight, CheckCircle } fro
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import SpotlightCard from "@/components/SpotlightCard"
-import Image from "next/image"
+import ScrollReveal from "@/components/scroll-reveal"
 
 export default function AboutPage() {
   const stats = [
@@ -47,50 +47,28 @@ export default function AboutPage() {
       role: "CEO & Founder",
       description:
         "15+ years in automotive technology and AI development. Former Tesla engineer with expertise in computer vision.",
-      image: "/placeholder.svg?height=300&width=300",
     },
     {
       name: "Priya Sharma",
       role: "CTO",
       description:
         "AI/ML expert with PhD in Computer Vision. Led development teams at Google and Microsoft before joining Panel Pro.",
-      image: "/placeholder.svg?height=300&width=300",
     },
     {
       name: "Arjun Patel",
       role: "Head of Operations",
       description:
         "Former automotive industry executive with 20+ years experience in body repair operations and business development.",
-      image: "/placeholder.svg?height=300&width=300",
     },
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-black via-blue-900 to-gray-900 pt-24 pb-20">
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              About
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-                Panel Pro
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto">
-              Revolutionizing car damage assessment with cutting-edge AI technology, empowering body repair shops across
-              India and beyond.
-            </p>
-          </div>
-        </div>
-      </section>
-
+    <div className="min-h-screen text-white">
       {/* Mission Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-4xl">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Our Mission</h2>
                 <p className="text-lg text-gray-300 mb-6 leading-relaxed">
@@ -108,23 +86,13 @@ export default function AboutPage() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </div>
-              <div className="relative">
-                <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Panel Pro Technology"
-                  width={600}
-                  height={400}
-                  className="rounded-2xl shadow-2xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-gray-900">
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Impact</h2>
@@ -135,9 +103,10 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {stats.map((stat, index) => (
+              <ScrollReveal key={index}>
               <SpotlightCard
                 key={index}
-                className="text-center group hover:shadow-xl transition-all duration-300"
+                className="text-center group glass-card rounded-3xl card-rise"
                 spotlightColor="rgba(59, 130, 246, 0.15)"
               >
                 <div className="flex flex-col items-center">
@@ -146,13 +115,14 @@ export default function AboutPage() {
                   <div className="text-gray-300 font-medium">{stat.label}</div>
                 </div>
               </SpotlightCard>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Values</h2>
@@ -163,9 +133,10 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {values.map((value, index) => (
+              <ScrollReveal key={index}>
               <Card
                 key={index}
-                className="bg-gray-900 border-blue-500/20 hover:border-blue-500/40 transition-all duration-300"
+                className="glass-card border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 rounded-3xl card-rise"
               >
                 <CardContent className="p-8">
                   <div className="flex items-start space-x-4">
@@ -179,13 +150,14 @@ export default function AboutPage() {
                   </div>
                 </CardContent>
               </Card>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-gray-900">
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Meet Our Team</h2>
@@ -196,32 +168,32 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {team.map((member, index) => (
+              <ScrollReveal key={index}>
               <SpotlightCard
                 key={index}
-                className="text-center group hover:shadow-xl transition-all duration-300"
+                className="text-center group glass-card rounded-3xl card-rise"
                 spotlightColor="rgba(59, 130, 246, 0.1)"
               >
                 <div className="p-6">
-                  <img
-                    src={member.image || "/placeholder.svg"}
-                    alt={member.name}
-                    className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-blue-500/20 group-hover:border-blue-500/40 transition-all duration-300"
-                  />
+                  <div className="w-32 h-32 rounded-full mx-auto mb-6 bg-blue-500/15 border-2 border-blue-500/30 flex items-center justify-center text-4xl font-bold text-blue-200">
+                    {member.name.charAt(0)}
+                  </div>
                   <h3 className="text-xl font-semibold text-white mb-2">{member.name}</h3>
                   <p className="text-blue-400 font-medium mb-4">{member.role}</p>
                   <p className="text-gray-300 text-sm leading-relaxed">{member.description}</p>
                 </div>
               </SpotlightCard>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Location Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-4xl">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Our Chennai Headquarters</h2>
                 <p className="text-lg text-gray-300 mb-6 leading-relaxed">
@@ -247,7 +219,7 @@ export default function AboutPage() {
                     <span className="text-gray-300">Partnership development center</span>
                   </div>
                 </div>
-                <div className="bg-gray-900 rounded-lg p-6 border border-blue-500/20">
+                <div className="glass-card rounded-2xl p-6 border border-blue-500/20">
                   <h3 className="text-lg font-semibold text-white mb-3">Visit Us</h3>
                   <p className="text-gray-300 text-sm">
                     78/34A, Ground Floor
@@ -260,25 +232,16 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
-              <div className="relative">
-                <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Panel Pro Chennai Office"
-                  width={600}
-                  height={400}
-                  className="rounded-2xl shadow-2xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-900 to-black">
+      <section className="py-20">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Transform Your Business?</h2>
+          <p className="font-script text-3xl text-blue-200 mb-2">Built to elevate every workshop</p>
+          <h2 className="section-title text-3xl md:text-4xl mb-6 text-white">Ready to Transform Your Business?</h2>
           <p className="text-xl mb-8 text-gray-200 max-w-2xl mx-auto">
             Join hundreds of body repair shops already using Panel Pro to streamline their damage assessment process
           </p>
